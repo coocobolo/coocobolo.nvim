@@ -2,11 +2,11 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
+A minimal Neovim colorscheme with customizable accent colors, light/dark themes, and highlight/palette overrides.
+
 ![Dark theme](https://github.com/coocobolo/coocobolo.nvim/blob/main/docs/coocobolo.nvim.gif)
 
-## Usage
 
-A minimal Neovim colorscheme with customizable accent colors, light/dark themes, and highlight/palette overrides.
 
 ## Supports:
 
