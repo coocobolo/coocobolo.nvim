@@ -2,7 +2,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-[Dark theme](https://github.com/coocobolo/coocobolo.nvim/blob/main/docs/coocobolo.nvim.gif)
+![Dark theme](https://github.com/coocobolo/coocobolo.nvim/blob/main/docs/coocobolo.nvim.gif)
 
 ## Usage
 
