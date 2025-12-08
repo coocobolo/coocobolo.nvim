@@ -133,6 +133,7 @@ local function diagnostics(p)
 		DiagnosticUnderlineError = { undercurl = true, sp = hex_to_dec(p.red) },
 		DiagnosticUnderlineWarn = { undercurl = true, sp = hex_to_dec(p.yellow) },
 		DiagnosticUnnecessary = { fg = p.primary_2, undercurl = true, sp = p.primary_3 },
+		QuickFixLine = { fg = p.accent },
 	}
 end
 
