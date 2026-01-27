@@ -207,6 +207,24 @@ local function fzf_lua(p)
 	}
 end
 
+local function ziglang(p)
+	return {
+		["@keyword.import.zig"] = { fg = p.accent },
+		["@keyword.function.zig"] = { fg = p.accent },
+		["@lsp.type.namespace.zig"] = { fg = p.primary_4 },
+		["@keyword.exception.zig"] = { fg = p.yellow },
+		["@lsp.type.keywordLiteral.zig"] = { fg = p.primary_5 },
+		["@keyword.repeat.zig"] = { fg = p.blue },
+		["@lsp.type.variable.zig"] = { fg = p.primary_4 },
+		["@lsp.type.type.zig"] = { fg = p.primary_4 },
+		["@keyword.conditional.zig"] = { fg = p.primary_5 },
+		["@lsp.type.builtin.zig"] = { fg = p.primary_5 },
+		["@lsp.type.errorTag.zig"] = { fg = p.yellow },
+		["@lsp.type.number.zig"] = { fg = p.yellow },
+		["@lsp.type.method.zig"] = { fg = p.primary_5 },
+	}
+end
+
 local function oil(p)
 	return {
 		OilFile = { fg = p.primary_3 },
@@ -245,6 +263,13 @@ local function fugitive(p)
 	}
 end
 
+local function gitsigns(p)
+	return {
+		GitSignsDeleteInline = { fg = p.red },
+		GitSignsAddInline = { fg = p.fg },
+	}
+end
+
 function M.hl(p)
 	local groups = vim.tbl_deep_extend(
 		"force",
@@ -260,7 +285,8 @@ function M.hl(p)
 		mason(p),
 		oil(p),
 		lazy(p),
-		fugitive(p)
+		fugitive(p),
+		gitsigns(p)
 		--
 	)
 
