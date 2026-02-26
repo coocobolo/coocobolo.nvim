@@ -1,7 +1,21 @@
 " Vim colorscheme
 " Name: coocobolo
 " Maintainer: @coocobolo (coocoobolo1@gmail.com)
-" License: MIT
+" [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+" Theme selection
+let g:coocobolo_theme = 'dark'        " 'dark' or 'colorful'
+
+" Accent colors (comma-separated string)
+let g:coocobolo_accent_colors = '#7A7B4C,#E3635F,#FFD93D,#00BFFF,#D79FC7,#00CED1,#FFB000,#FF8DA1'
+let g:coocobolo_accent_default = '#7A7B4C'
+let g:coocobolo_accent_randomize = 0
+
+" Custom palette overrides
+let g:coocobolo_custom_palette = {'bg': '', 'fg': '', 'primary': '', 'red': '', 'green': '', 'blue': '', 'yellow': ''}
+
+" Highlights overrides
+let g:coocobolo_custom_highlights = {}
 
 " Dark palette
 let g:coocobolo_dark = {
@@ -41,16 +55,11 @@ let g:coocobolo_colorful = {
 \ 'accent': '#8A8635',
 \ }
 
-function! s:HexToDec(hex)
-  return str2nr(a:hex[1:], 16)
-endfunction
-
-
 function! CoocoboloSetPalette(name)
     if a:name ==# 'dark'
-        let g:coocobolo_current = g:coocobolo_dark
+        let s:current = g:coocobolo_dark
     elseif a:name ==# 'colorful'
-        let g:coocobolo_current = g:coocobolo_colorful
+        let s:current = g:coocobolo_colorful
     else
         echo "Unknown palette: " . a:name
         return
@@ -64,142 +73,173 @@ function! CoocoboloSetPalette(name)
 
     let g:colors_name = 'coocobolo'
 
-   let s:groups = {
-   \ 'Normal': {'fg': g:coocobolo_current.fg, 'bg': g:coocobolo_current.bg}, 
-   \ 'Visual': {'fg': g:coocobolo_current.none, 'bg': g:coocobolo_current.primary, 'gui': 'bold'},
-   \ 'YankHighlight': {'fg': g:coocobolo_current.primary_5, 'gui': 'bold'},
-   \ 'lCursor': {'fg': g:coocobolo_current.none, 'bg': g:coocobolo_current.none},
-   \ 'TermCursor': {'fg': g:coocobolo_current.none, 'bg': g:coocobolo_current.accent},
-   \ 'Cursor': {'fg': g:coocobolo_current.red, 'bg': g:coocobolo_current.accent},
-   \ 'CursorColumn': {'fg': g:coocobolo_current.none, 'bg': g:coocobolo_current.primary},
-   \ 'CursorIM': {'fg': g:coocobolo_current.none},
-   \ 'CursorLine': {'fg': g:coocobolo_current.none, 'bg': g:coocobolo_current.primary},
-   \ 'CursorLineSign': {'fg': g:coocobolo_current.bg},
-   \ 'SignColumn': {'fg': g:coocobolo_current.fg, 'bg': g:coocobolo_current.bg},
-   \ 'CursorLineNr': {'fg': g:coocobolo_current.accent},
-   \ 'CursorLineFold': {'fg': g:coocobolo_current.accent},
-   \ 'EndOfBuffer': {'fg': g:coocobolo_current.bg, 'bg': g:coocobolo_current.bg},
-   \ 'Title': {'fg': g:coocobolo_current.primary_4, 'gui': 'bold'},
-   \ 'Bold': {'fg': g:coocobolo_current.primary_4, 'gui': 'bold'},
-   \ 'LineNr': {'fg': g:coocobolo_current.primary_2, 'bg': g:coocobolo_current.bg},
-   \ 'FloatBorder': {'fg': g:coocobolo_current.primary, 'gui': 'bold'},
-   \ 'FloatTitle': {'fg': g:coocobolo_current.primary_2},
-   \ 'StatusLine': {'fg': g:coocobolo_current.fg, 'bg': g:coocobolo_current.bg},
-   \ 'TabLine': {'fg': g:coocobolo_current.fg, 'bg': g:coocobolo_current.bg},
-   \ 'TabLineSel': {'fg': g:coocobolo_current.primary_3, 'bg': g:coocobolo_current.bg},
-   \ 'TabLineFill': {'fg': g:coocobolo_current.primary_3, 'bg': g:coocobolo_current.bg},
-   \ 'StatusLineNC': {'fg': g:coocobolo_current.fg, 'bg': g:coocobolo_current.bg},
-   \ 'StatusLineTerm': {'fg': g:coocobolo_current.fg, 'bg': g:coocobolo_current.bg},
-   \ 'VertSplit': {'fg': g:coocobolo_current.bg, 'bg': g:coocobolo_current.bg},
-   \ 'Directory': {'fg': g:coocobolo_current.primary_3},
-   \ 'WinSeparator': {'fg': g:coocobolo_current.bg, 'bg': g:coocobolo_current.bg},
-   \ 'Error': {'fg': g:coocobolo_current.red},
-   \ 'ErrorMsg': {'fg': g:coocobolo_current.red},
-   \ 'WarningMsg': {'fg': g:coocobolo_current.yellow},
-   \ 'Todo': {'fg': g:coocobolo_current.primary_6},
-   \ 'CurSearch': {'fg': g:coocobolo_current.accent, 'bg': g:coocobolo_current.none, 'gui': 'bold'},
-   \ 'Search': {'fg': g:coocobolo_current.accent, 'bg': g:coocobolo_current.none},
-   \ 'IncSearch': {'fg': g:coocobolo_current.accent, 'gui': 'bold'},
-   \ 'Folded': {'fg': g:coocobolo_current.primary_2, 'gui': 'bold'},
-   \ 'FoldColumn': {'fg': g:coocobolo_current.primary_2},
-   \ 'ModeMsg': {'fg': g:coocobolo_current.accent},
-   \ 'MoreMsg': {'fg': g:coocobolo_current.accent},
-   \ 'Question': {'fg': g:coocobolo_current.primary_2},
-   \ 'NormalFloat': {'bg': g:coocobolo_current.bg},
-   \ 'Pmenu': {'bg': g:coocobolo_current.none},
-   \ 'PmenuThumb': {'bg': g:coocobolo_current.none},
-   \ 'PmenuSel': {'fg': g:coocobolo_current.bg, 'bg': g:coocobolo_current.accent},
-   \ 'Type': {'fg': g:coocobolo_current.primary_4},
-   \ 'String': {'fg': g:coocobolo_current.primary_3},
-   \ 'Comment': {'fg': g:coocobolo_current.primary_2},
-   \ 'Special': {'fg': g:coocobolo_current.primary_3},
-   \ 'Constant': {'fg': g:coocobolo_current.primary_3},
-   \ 'Statement': {'fg': g:coocobolo_current.primary_4},
-   \ 'Function': {'fg': g:coocobolo_current.primary_5, 'gui': 'bold'},
-   \ 'Operator': {'fg': g:coocobolo_current.primary_2, 'gui': 'bold'},
-   \ 'Delimiter': {'fg': g:coocobolo_current.primary_2, 'gui': 'bold'},
-   \ 'Underlined': {'fg': g:coocobolo_current.primary_3, 'gui': 'underline'},
-   \ 'Identifier': {'fg': g:coocobolo_current.accent},
-   \ 'DiagnosticSignError': {'fg': g:coocobolo_current.red},
-   \ 'DiagnosticSignWarn': {'fg': g:coocobolo_current.yellow},
-   \ 'DiagnosticHint': {'fg': g:coocobolo_current.primary_4},
-   \ 'DiagnosticError': {'fg': g:coocobolo_current.red, 'bg': g:coocobolo_current.none},
-   \ 'DiagnosticWarn': {'fg': g:coocobolo_current.yellow, 'bg': g:coocobolo_current.none},
-   \ 'DiagnosticInfo': {'fg': g:coocobolo_current.primary_6, 'bg': g:coocobolo_current.none},
-   \ 'DiagnosticVirtualTextError': {'fg': g:coocobolo_current.red, 'bg': g:coocobolo_current.none},
-   \ 'DiagnosticVirtualLinesError': {'fg': g:coocobolo_current.red, 'bg': g:coocobolo_current.none},
-   \ 'DiagnosticVirtualTextWarn': {'fg': g:coocobolo_current.yellow, 'bg': g:coocobolo_current.none},
-   \ 'DiagnosticVirtualLinesWarn': {'fg': g:coocobolo_current.yellow, 'bg': g:coocobolo_current.none},
-   \ 'DiagnosticUnderlineError': {'gui': 'undercurl', 'guisp': g:coocobolo_current.red},
-   \ 'DiagnosticUnderlineWarn': {'gui': 'undercurl', 'guisp': g:coocobolo_current.yellow},
-   \ 'DiagnosticUnnecessary': {'fg': g:coocobolo_current.primary_2, 'gui': 'undercurl', 'guisp': g:coocobolo_current.primary_3},
-   \ 'QuickFixLine': {'fg': g:coocobolo_current.accent},
-   \ 'Removed': {'fg': g:coocobolo_current.red},
-   \ 'Added': {'fg': g:coocobolo_current.accent},
-   \ 'DiffDelete': {'fg': g:coocobolo_current.red},
-   \ 'DiffAdd': {'fg': g:coocobolo_current.accent},
-   \ 'Changed': {'fg': g:coocobolo_current.primary_2},
-   \ 'DiffChange': {'fg': g:coocobolo_current.primary_2},
-   \ 'SnippetTabstop': {'fg': g:coocobolo_current.none},
-   \ 'FzfLuaTitle': {'fg': g:coocobolo_current.fg},
-   \ 'FzfLuaFzfPrompt': {'fg': g:coocobolo_current.fg},
-   \ 'FzfLuaTabTitle': {'fg': g:coocobolo_current.blue},
-   \ 'FzfLuaBorder': {'fg': g:coocobolo_current.primary},
-   \ 'FzfLuaHeaderText': {'fg': g:coocobolo_current.red},
-   \ 'FzfLuaBufFlagAlt': {'fg': g:coocobolo_current.blue},
-   \ 'FzfLuaBufNr': {'fg': g:coocobolo_current.primary_4},
-   \ 'FzfLuaTabMarker': {'fg': g:coocobolo_current.yellow},
-   \ 'FzfLuaFzfInfo': {'fg': g:coocobolo_current.primary_2},
-   \ 'FzfLuaPathLineNr': {'fg': g:coocobolo_current.accent},
-   \ 'FzfLuaScrollFloatFull': {'fg': g:coocobolo_current.fg},
-   \ 'FzfLuaScrollFloatEmpty': {'fg': g:coocobolo_current.fg},
-   \ 'FzfLuaPathColNr': {'fg': g:coocobolo_current.primary_4},
-   \ 'FzfLuaFzfPointer': {'fg': g:coocobolo_current.primary_3},
-   \ 'FzfLuaLivePrompt': {'fg': g:coocobolo_current.primary_4},
-   \ 'FzfLuaHeaderBind': {'fg': g:coocobolo_current.primary_5},
-   \ 'FzfLuaSearch': {'fg': g:coocobolo_current.accent, 'bg': g:coocobolo_current.none},
-   \ 'FzfLuaCursor': {'fg': g:coocobolo_current.accent, 'bg': g:coocobolo_current.none},
-   \ 'FzfLuaFzfMatch': {'fg': g:coocobolo_current.accent, 'bg': g:coocobolo_current.none},
-   \ 'FzfLuaCursorLine': {'fg': g:coocobolo_current.primary_3, 'bg': g:coocobolo_current.none},
-   \ 'MasonHighlight': {'fg': g:coocobolo_current.accent},
-   \ 'MasonHeaderSecondary': {'bg': g:coocobolo_current.primary},
-   \ 'MasonMuted': {'fg': g:coocobolo_current.primary_2, 'bg': g:coocobolo_current.none},
-   \ 'MasonHighlightBlock': {'fg': g:coocobolo_current.accent, 'bg': g:coocobolo_current.none},
-   \ 'MasonHighlightBlockBold': {'fg': g:coocobolo_current.accent, 'bg': g:coocobolo_current.primary},
-   \ 'MasonHeader': {'fg': g:coocobolo_current.primary_4, 'bg': g:coocobolo_current.bg, 'gui': 'bold'},
-   \ 'MasonHeading': {'fg': g:coocobolo_current.primary_4, 'bg': g:coocobolo_current.bg, 'gui': 'bold'},
-   \ 'MasonMutedBlock': {'fg': g:coocobolo_current.theme == 'light' ? g:coocobolo_current.bg : g:coocobolo_current.none, 'bg': g:coocobolo_current.bg},
-   \ 'LazySpecial': {'fg': g:coocobolo_current.accent},
-   \ 'LazyButton': {'bg': g:coocobolo_current.bg},
-   \ 'LazyButtonActive': {'fg': g:coocobolo_current.accent, 'bg': g:coocobolo_current.primary},
-   \ 'fugitiveHelpTag': {'fg': g:coocobolo_current.accent},
-   \ 'fugitiveHeader': {'gui': 'bold'},
-   \ 'fugitiveUntrackedHeading': {'fg': g:coocobolo_current.primary_3, 'gui': 'bold'},
-   \ 'fugitiveUnstagedHeading': {'fg': g:coocobolo_current.primary_4, 'gui': 'bold'},
-   \ 'fugitiveStagedHeading': {'fg': g:coocobolo_current.accent, 'gui': 'bold'},
-   \ 'fugitiveCount': {'fg': g:coocobolo_current.primary_4},
-   \ }
+    " Apply user custom palette overrides
+    for [key, val] in items(g:coocobolo_custom_palette)
+        if val != ''
+            let s:current[key] = val
+        endif
+    endfor
 
-   for group_name in keys(s:groups)
-     let props = s:groups[group_name]
-     let cmd = 'hi ' . group_name
-     if has_key(props, 'fg')
-       let cmd .= ' guifg=' . props.fg
-     endif
-     if has_key(props, 'bg')
-       let cmd .= ' guibg=' . props.bg
-     endif
-     if has_key(props, 'gui')
-       let cmd .= ' gui=' . props.gui
-     endif
-     if has_key(props, 'guisp')
-       let cmd .= ' guisp=' . props.guisp
-     endif
-     execute cmd
-   endfor
+    " Pick accent color
+    if g:coocobolo_accent_randomize
+        let accent_list = split(g:coocobolo_accent_colors, ',')
+        let s:current.accent = accent_list[rand() % len(accent_list)]
+    else
+        let s:current.accent = g:coocobolo_accent_default
+    endif
 
+    let s:groups = {
+    \ 'Normal': {'fg': s:current.fg, 'bg': s:current.bg}, 
+    \ 'Visual': {'fg': s:current.none, 'bg': s:current.primary, 'gui': 'bold'},
+    \ 'YankHighlight': {'fg': s:current.primary_5, 'gui': 'bold'},
+    \ 'lCursor': {'fg': s:current.none, 'bg': s:current.none},
+    \ 'TermCursor': {'fg': s:current.none, 'bg': s:current.accent},
+    \ 'Cursor': {'fg': s:current.red, 'bg': s:current.accent},
+    \ 'CursorColumn': {'fg': s:current.none, 'bg': s:current.primary},
+    \ 'CursorIM': {'fg': s:current.none},
+    \ 'CursorLine': {'fg': s:current.none, 'bg': s:current.primary},
+    \ 'CursorLineSign': {'fg': s:current.bg},
+    \ 'SignColumn': {'fg': s:current.fg, 'bg': s:current.bg},
+    \ 'CursorLineNr': {'fg': s:current.accent},
+    \ 'CursorLineFold': {'fg': s:current.accent},
+    \ 'EndOfBuffer': {'fg': s:current.bg, 'bg': s:current.bg},
+    \ 'Title': {'fg': s:current.primary_4, 'gui': 'bold'},
+    \ 'Bold': {'fg': s:current.primary_4, 'gui': 'bold'},
+    \ 'LineNr': {'fg': s:current.primary_2, 'bg': s:current.bg},
+    \ 'FloatBorder': {'fg': s:current.primary, 'gui': 'bold'},
+    \ 'FloatTitle': {'fg': s:current.primary_2},
+    \ 'StatusLine': {'fg': s:current.fg, 'bg': s:current.bg},
+    \ 'TabLine': {'fg': s:current.fg, 'bg': s:current.bg},
+    \ 'TabLineSel': {'fg': s:current.primary_3, 'bg': s:current.bg},
+    \ 'TabLineFill': {'fg': s:current.primary_3, 'bg': s:current.bg},
+    \ 'StatusLineNC': {'fg': s:current.fg, 'bg': s:current.bg},
+    \ 'StatusLineTerm': {'fg': s:current.fg, 'bg': s:current.bg},
+    \ 'VertSplit': {'fg': s:current.bg, 'bg': s:current.bg},
+    \ 'Directory': {'fg': s:current.primary_3},
+    \ 'WinSeparator': {'fg': s:current.bg, 'bg': s:current.bg},
+    \ 'Error': {'fg': s:current.red},
+    \ 'ErrorMsg': {'fg': s:current.red},
+    \ 'WarningMsg': {'fg': s:current.yellow},
+    \ 'Todo': {'fg': s:current.primary_6},
+    \ 'CurSearch': {'fg': s:current.accent, 'bg': s:current.none, 'gui': 'bold'},
+    \ 'Search': {'fg': s:current.accent, 'bg': s:current.none},
+    \ 'IncSearch': {'fg': s:current.accent, 'gui': 'bold'},
+    \ 'Folded': {'fg': s:current.primary_2, 'gui': 'bold'},
+    \ 'FoldColumn': {'fg': s:current.primary_2},
+    \ 'ModeMsg': {'fg': s:current.accent},
+    \ 'MoreMsg': {'fg': s:current.accent},
+    \ 'Question': {'fg': s:current.primary_2},
+    \ 'NormalFloat': {'bg': s:current.bg},
+    \ 'Pmenu': {'bg': s:current.none},
+    \ 'PmenuThumb': {'bg': s:current.none},
+    \ 'PmenuSel': {'fg': s:current.bg, 'bg': s:current.accent},
+    \ 'Type': {'fg': s:current.primary_4},
+    \ 'String': {'fg': s:current.primary_3},
+    \ 'Comment': {'fg': s:current.primary_2},
+    \ 'Special': {'fg': s:current.primary_3},
+    \ 'Constant': {'fg': s:current.primary_3},
+    \ 'Statement': {'fg': s:current.primary_4},
+    \ 'Function': {'fg': s:current.primary_5, 'gui': 'bold'},
+    \ 'Operator': {'fg': s:current.primary_2, 'gui': 'bold'},
+    \ 'Delimiter': {'fg': s:current.primary_2, 'gui': 'bold'},
+    \ 'Underlined': {'fg': s:current.primary_3, 'gui': 'underline'},
+    \ 'Identifier': {'fg': s:current.accent},
+    \ 'DiagnosticSignError': {'fg': s:current.red},
+    \ 'DiagnosticSignWarn': {'fg': s:current.yellow},
+    \ 'DiagnosticHint': {'fg': s:current.primary_4},
+    \ 'DiagnosticError': {'fg': s:current.red, 'bg': s:current.none},
+    \ 'DiagnosticWarn': {'fg': s:current.yellow, 'bg': s:current.none},
+    \ 'DiagnosticInfo': {'fg': s:current.primary_6, 'bg': s:current.none},
+    \ 'DiagnosticVirtualTextError': {'fg': s:current.red, 'bg': s:current.none},
+    \ 'DiagnosticVirtualLinesError': {'fg': s:current.red, 'bg': s:current.none},
+    \ 'DiagnosticVirtualTextWarn': {'fg': s:current.yellow, 'bg': s:current.none},
+    \ 'DiagnosticVirtualLinesWarn': {'fg': s:current.yellow, 'bg': s:current.none},
+    \ 'DiagnosticUnderlineError': {'gui': 'undercurl', 'guisp': s:current.red},
+    \ 'DiagnosticUnderlineWarn': {'gui': 'undercurl', 'guisp': s:current.yellow},
+    \ 'DiagnosticUnnecessary': {'fg': s:current.primary_2, 'gui': 'undercurl', 'guisp': s:current.primary_3},
+    \ 'QuickFixLine': {'fg': s:current.accent},
+    \ 'Removed': {'fg': s:current.red},
+    \ 'Added': {'fg': s:current.accent},
+    \ 'DiffDelete': {'fg': s:current.red},
+    \ 'DiffAdd': {'fg': s:current.accent},
+    \ 'Changed': {'fg': s:current.primary_2},
+    \ 'DiffChange': {'fg': s:current.primary_2},
+    \ 'SnippetTabstop': {'fg': s:current.none},
+    \ 'FzfLuaTitle': {'fg': s:current.fg},
+    \ 'FzfLuaFzfPrompt': {'fg': s:current.fg},
+    \ 'FzfLuaTabTitle': {'fg': s:current.blue},
+    \ 'FzfLuaBorder': {'fg': s:current.primary},
+    \ 'FzfLuaHeaderText': {'fg': s:current.red},
+    \ 'FzfLuaBufFlagAlt': {'fg': s:current.blue},
+    \ 'FzfLuaBufNr': {'fg': s:current.primary_4},
+    \ 'FzfLuaTabMarker': {'fg': s:current.yellow},
+    \ 'FzfLuaFzfInfo': {'fg': s:current.primary_2},
+    \ 'FzfLuaPathLineNr': {'fg': s:current.accent},
+    \ 'FzfLuaScrollFloatFull': {'fg': s:current.fg},
+    \ 'FzfLuaScrollFloatEmpty': {'fg': s:current.fg},
+    \ 'FzfLuaPathColNr': {'fg': s:current.primary_4},
+    \ 'FzfLuaFzfPointer': {'fg': s:current.primary_3},
+    \ 'FzfLuaLivePrompt': {'fg': s:current.primary_4},
+    \ 'FzfLuaHeaderBind': {'fg': s:current.primary_5},
+    \ 'FzfLuaSearch': {'fg': s:current.accent, 'bg': s:current.none},
+    \ 'FzfLuaCursor': {'fg': s:current.accent, 'bg': s:current.none},
+    \ 'FzfLuaFzfMatch': {'fg': s:current.accent, 'bg': s:current.none},
+    \ 'FzfLuaCursorLine': {'fg': s:current.primary_3, 'bg': s:current.none},
+    \ 'MasonHighlight': {'fg': s:current.accent},
+    \ 'MasonHeaderSecondary': {'bg': s:current.primary},
+    \ 'MasonMuted': {'fg': s:current.primary_2, 'bg': s:current.none},
+    \ 'MasonHighlightBlock': {'fg': s:current.accent, 'bg': s:current.none},
+    \ 'MasonHighlightBlockBold': {'fg': s:current.accent, 'bg': s:current.primary},
+    \ 'MasonHeader': {'fg': s:current.primary_4, 'bg': s:current.bg, 'gui': 'bold'},
+    \ 'MasonHeading': {'fg': s:current.primary_4, 'bg': s:current.bg, 'gui': 'bold'},
+    \ 'MasonMutedBlock': {'fg': s:current.theme == 'light' ? s:current.bg : s:current.none, 'bg': s:current.bg},
+    \ 'LazySpecial': {'fg': s:current.accent},
+    \ 'LazyButton': {'bg': s:current.bg},
+    \ 'LazyButtonActive': {'fg': s:current.accent, 'bg': s:current.primary},
+    \ 'fugitiveHelpTag': {'fg': s:current.accent},
+    \ 'fugitiveHeader': {'gui': 'bold'},
+    \ 'fugitiveUntrackedHeading': {'fg': s:current.primary_3, 'gui': 'bold'},
+    \ 'fugitiveUnstagedHeading': {'fg': s:current.primary_4, 'gui': 'bold'},
+    \ 'fugitiveStagedHeading': {'fg': s:current.accent, 'gui': 'bold'},
+    \ 'fugitiveCount': {'fg': s:current.primary_4},
+    \ }
+
+    for group_name in keys(s:groups)
+        let props = s:groups[group_name]
+        let cmd = 'hi ' . group_name
+
+        if has_key(props, 'fg')
+            let cmd .= ' guifg=' . props.fg
+        endif
+        if has_key(props, 'bg')
+            let cmd .= ' guibg=' . props.bg
+        endif
+        if has_key(props, 'gui')
+            let cmd .= ' gui=' . props.gui
+        endif
+        if has_key(props, 'guisp')
+            let cmd .= ' guisp=' . props.guisp
+        endif
+        execute cmd
+    endfor
+
+    " Apply user custom highlight overrides
+    for [group, props] in items(g:coocobolo_custom_highlights)
+        let cmd = 'hi ' . group
+        if has_key(props, 'fg')
+            let cmd .= ' guifg=' . props.fg
+        endif
+        if has_key(props, 'bg')
+            let cmd .= ' guibg=' . props.bg
+        endif
+        if has_key(props, 'bold') && props.bold
+            let cmd .= ' gui=bold'
+        endif
+        execute cmd
+    endfor
 endfunction
 
+" Apply selected palette
 if exists('g:coocobolo_palette')
     let s:palette_name = g:coocobolo_palette
 else
@@ -210,5 +250,10 @@ else
     endif
 endif
 
-" Apply selected palette
-call CoocoboloSetPalette(s:palette_name)
+augroup coocobolo_autoload
+    autocmd!
+    " Apply the palette when Vim starts
+    autocmd VimEnter * if exists('*CoocoboloSetPalette') | call CoocoboloSetPalette(s:palette_name) | endif
+    " Also re-apply if the colorscheme is set later
+    autocmd ColorScheme coocobolo if exists('*CoocoboloSetPalette') | call CoocoboloSetPalette(s:palette_name) | endif
+augroup END

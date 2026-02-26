@@ -27,11 +27,6 @@ A minimal Neovim colorscheme with customizable accent colors, light/dark themes,
 call plug#begin('~/.vim/plugged')
 Plug 'coocobolo/coocobolo.nvim', { 'branch': 'master' }
 call plug#end()
-
-" configuration
-set background=dark
-" otherwise using light/colorful palette
-colorscheme coocobolo
 ```
 
 ## [packer.nvim](https://github.com/wbthomason/packer.nvim)
@@ -82,6 +77,86 @@ use "coocobolo/coocobolo.nvim"
     },
   },
 }
+```
+
+### vim colorscheme configuration (.vimrc)
+
+```vim
+" default configuration
+set background=dark
+
+" Apply the Colorscheme
+" Always apply the colorscheme after all configuration variables are set.
+colorscheme coocobolo
+```
+
+```vim
+" default configuration
+set background=dark
+
+" Apply the Colorscheme
+" Always apply the colorscheme after all configuration variables are set.
+colorscheme coocobolo
+
+" Override the config
+
+" Theme
+" Choose the base palette for the colorscheme.
+" Options:
+"   'dark'     - Dark theme (default)
+"   'colorful' - Light/Colorful theme
+let g:coocobolo_theme = 'dark'
+
+" Accent Colors
+" Define the accent colors used throughout the theme.
+" Use a comma-separated string of hex color codes.
+let g:coocobolo_accent_colors = '#7A7B4C,#E3635F,#FFD93D,#00BFFF,#D79FC7,#00CED1,#FFB000,#FF8DA1'
+
+" Default accent color if not randomizing
+let g:coocobolo_accent_default = '#B6B6B6'
+
+" Enable random selection of accent colors from the list (0 = false, 1 = true)
+let g:coocobolo_accent_randomize = 0
+
+
+" Custom Palette Overrides
+" Override any colors from the default palette.
+" Only set the fields you want to change; leave others as empty strings.
+" Fields include:
+"   bg, fg, primary, primary_2, primary_3, primary_4, primary_5, primary_6,
+"   red, green, blue, yellow
+let g:coocobolo_custom_palette = {
+      \ 'bg': '',          " Background color
+      \ 'fg': '',          " Foreground color
+      \ 'primary': '',     " Primary UI color
+      \ 'primary_2': '',   " Secondary primary
+      \ 'primary_3': '',   " Tertiary primary
+      \ 'primary_4': '',   " Quaternary primary
+      \ 'primary_5': '',   " Quinary primary
+      \ 'primary_6': '',   " Senary primary
+      \ 'red': '#F26E5A',  " Red
+      \ 'green': '',       " Green
+      \ 'blue': '#057DCD', " Blue
+      \ 'yellow': '',      " Yellow
+      \ }
+
+
+" Custom Highlight Groups
+" Add or override highlight groups using Vim's 'hi' attributes.
+" Fields:
+"   fg   - Foreground color (#hex)
+"   bg   - Background color (#hex)
+"   gui  - Text style: bold, italic, underline, undercurl
+let g:coocobolo_custom_highlights = {
+      \ 'Normal':  {'fg': '#474747', 'bg': '#101010', 'gui': 'bold'},
+      \ 'Comment': {'fg': '#888888', 'gui': 'italic'},
+      \ 'CursorLine': {'bg': '#202020'},
+      \ }
+
+
+" Apply the Colorscheme
+" Always apply the colorscheme after all configuration variables are set.
+colorscheme coocobolo
 ```
 
 ## Configuration
