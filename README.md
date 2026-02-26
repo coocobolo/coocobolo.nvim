@@ -21,6 +21,19 @@ A minimal Neovim colorscheme with customizable accent colors, light/dark themes,
 
 ## Installation:
 
+## [vim-plug](https://github.com/junegunn/vim-plug)
+
+```vim
+call plug#begin('~/.vim/plugged')
+Plug 'coocobolo/coocobolo.nvim', { 'branch': 'master' }
+call plug#end()
+
+" configuration
+set background=dark
+" otherwise using light/colorful palette
+colorscheme coocobolo
+```
+
 ## [packer.nvim](https://github.com/wbthomason/packer.nvim)
 
 ```lua
@@ -89,5 +102,5 @@ use "coocobolo/coocobolo.nvim"
 
 ## TODO
 
-- [ ] support for vim
-- [ ] cover other plugins
+- [x] support for vim
+- [ ] re-check groups color matching in vim version

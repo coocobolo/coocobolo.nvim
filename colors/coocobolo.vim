@@ -5,40 +5,40 @@
 
 " Dark palette
 let g:coocobolo_dark = {
+\ 'theme': 'dark',
 \ 'none': 'NONE',
-\ 'bg': '#1e1e1e',
-\ 'fg': '#d8d8d8',
-\ 'primary': '#121212',
-\ 'primary_2': '#555555',
-\ 'primary_3': '#777777',
-\ 'primary_4': '#999999',
-\ 'primary_5': '#bbbbbb',
-\ 'primary_6': '#dddddd',
-\ 'red': '#ff5c57',
-\ 'green': '#00ff00',
-\ 'blue': '#00aaff',
-\ 'yellow': '#ffaa00',
-\ 'accent': '#00ff00',
-\ 'theme': 'dark'
+\ 'bg': '#000000',
+\ 'fg': '#444443',
+\ 'primary': '#161616',
+\ 'primary_2': '#353535',
+\ 'primary_3': '#605F5E',
+\ 'primary_4': '#8E8C8A',
+\ 'primary_5': '#A5A09E',
+\ 'primary_6': '#B1ADAB',
+\ 'red': '#E3635F',
+\ 'green': '#7A7B4C',
+\ 'blue': '#00BFFF',
+\ 'yellow': '#FFC436',
+\ 'accent': '#7A7B4C',
 \ }
 
 " Colorful palette
 let g:coocobolo_colorful = {
+\ 'theme': 'light',
 \ 'none': 'NONE',
-\ 'bg': '#c0c0c0',
+\ 'bg': '#BAB8B4',
 \ 'fg': '#000000',
-\ 'primary': '#333333',
-\ 'primary_2': '#555555',
-\ 'primary_3': '#111111',
-\ 'primary_4': '#888888',
-\ 'primary_5': '#aaaaaa',
-\ 'primary_6': '#222222',
-\ 'red': '#ff0000',
-\ 'green': '#00ff00',
-\ 'blue': '#00aaff',
-\ 'yellow': '#ffaa00',
-\ 'accent': '#00ff00',
-\ 'theme': 'light'
+\ 'primary': '#AEABA7',
+\ 'primary_2': '#707070',
+\ 'primary_3': '#303030',
+\ 'primary_4': '#606060',
+\ 'primary_5': '#555555',
+\ 'primary_6': '#474747',
+\ 'red': '#E3635F',
+\ 'green': '#8A8635',
+\ 'blue': '#00BFFF',
+\ 'yellow': '#FFBF00',
+\ 'accent': '#8A8635',
 \ }
 
 function! s:HexToDec(hex)
