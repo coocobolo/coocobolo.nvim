@@ -86,7 +86,7 @@ use "coocobolo/coocobolo.nvim"
 set background=dark
 
 " Apply the Colorscheme
-" Always apply the colorscheme after all configuration variables are set.
+" set this value will apply default configuration
 colorscheme coocobolo
 ```
 
@@ -95,7 +95,7 @@ colorscheme coocobolo
 set background=dark
 
 " Apply the Colorscheme
-" Always apply the colorscheme after all configuration variables are set.
+" set this value will apply default configuration
 colorscheme coocobolo
 
 " Override the config
