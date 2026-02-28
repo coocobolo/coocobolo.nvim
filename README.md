@@ -4,7 +4,7 @@
 
 A minimal Neovim colorscheme with customizable accent colors, light/dark themes, and highlight/palette overrides.
 
-![Dark theme](https://github.com/coocobolo/coocobolo.nvim/blob/main/docs/coocobolo.nvim.gif)
+![Dark theme](https://github.com/coocobolo/coocobolo.nvim/blob/master/docs/coocobolo.nvim.gif)
 
 
 
